@@ -1,4 +1,4 @@
-import AbstractParserToken from "../../../../../../abstracts/AbstractParserToken";
+import AbstractParserToken from "../../../../../../core/abstracts/AbstractParserToken";
 
 export default class HTMLElementOpeningTagQuoteToken extends AbstractParserToken
 {

@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import HTMLElementTagAttributeNameToken from "../../../../tokens/element/tag/attribute/name/HTMLElementTagAttributeNameToken";
 import HTMLElementTagAttributeValueToken from "../../../../tokens/element/tag/attribute/value/HTMLElementTagAttributeValueToken";
 import HTMLElementTagAttributeOperatorToken from "../../../../tokens/element/tag/attribute/operator/HTMLElementTagAttributeOperatorToken";

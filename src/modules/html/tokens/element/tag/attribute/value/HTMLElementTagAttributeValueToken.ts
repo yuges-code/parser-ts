@@ -1,5 +1,5 @@
-import AbstractParserToken from "../../../../../../../abstracts/AbstractParserToken";
-import AbstractParserPattern from "../../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserToken from "../../../../../../../core/abstracts/AbstractParserToken";
+import AbstractParserPattern from "../../../../../../../core/abstracts/AbstractParserPattern";
 import HTMLElementTagAttributePattern from "../../../../../patterns/element/tag/attribute/HTMLElementTagAttributePattern";
 
 export default class HTMLElementTagAttributeValueToken extends AbstractParserToken

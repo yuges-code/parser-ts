@@ -1,4 +1,4 @@
-import AbstractParserPatternCollection from "../../../../../../abstracts/AbstractParserPatternCollection";
+import AbstractParserPatternCollection from "../../../../../../core/abstracts/AbstractParserPatternCollection";
 import HTMLElementTagAttributePattern from "../../../../patterns/element/tag/attribute/HTMLElementTagAttributePattern";
 
 export default class HTMLElementTagAttributeCollection extends AbstractParserPatternCollection

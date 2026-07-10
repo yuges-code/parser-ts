@@ -1,5 +1,6 @@
-import AbstractParserPattern from "../../../../abstracts/AbstractParserPattern";
+
 import HTMLCommentTextToken from "../../tokens/comment/text/HTMLCommentTextToken";
+import AbstractParserPattern from "../../../../core/abstracts/AbstractParserPattern";
 import HTMLCommentOpeningQuoteToken from "../../tokens/comment/quote/HTMLCommentOpeningQuoteToken";
 import HTMLCommentClosingQuoteToken from "../../tokens/comment/quote/HTMLCommentClosingQuoteToken";
 
