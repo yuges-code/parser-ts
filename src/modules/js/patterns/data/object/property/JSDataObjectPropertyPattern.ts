@@ -1,5 +1,5 @@
 import JSDataObjectPropertyKeyPattern from "./key/JSDataObjectPropertyKeyPattern";
-import AbstractParserPattern from "../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSDataObjectPropertyValuePattern from "./value/JSDataObjectPropertyValuePattern";
 import JSDataObjectPropertySeparatorToken from "../../../../tokens/data/object/property/separator/JSDataObjectPropertySeparatorToken";
 import JSOperatorCommaToken from "../../../../tokens/operator/comma/JSOperatorCommaToken";

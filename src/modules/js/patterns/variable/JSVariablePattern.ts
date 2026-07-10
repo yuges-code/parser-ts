@@ -1,5 +1,5 @@
 import JSDataPattern from "../data/JSDataPattern";
-import AbstractParserPattern from "../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNameToken from "../../tokens/variable/name/JSVariableNameToken";
 import JSExpressionAccessPattern from "../expression/access/JSExpressionAccessPattern";
 import JSExpressionCallingPattern from "../expression/calling/JSExpressionCallingPattern";

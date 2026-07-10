@@ -6,7 +6,7 @@ import JSDataObjectPattern from "./object/JSDataObjectPattern";
 import JSDataBooleanPattern from "./boolean/JSDataBooleanPattern";
 import JSDataFunctionPattern from "./function/JSDataFunctionPattern";
 import JSDataUndefinedPattern from "./undefined/JSDataUndefinedPattern";
-import AbstractParserPattern from "../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../core/abstracts/AbstractParserPattern";
 
 export default class JSDataPattern extends AbstractParserPattern
 {

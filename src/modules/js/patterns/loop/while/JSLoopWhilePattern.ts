@@ -1,6 +1,6 @@
 import JSLoopWhileBodyPattern from "./body/JSLoopWhileBodyPattern";
 import JSLoopWhileConditionPattern from "./condition/JSLoopWhileConditionPattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSLoopWhileKeywordToken from "../../../tokens/loop/while/keyword/JSLoopWhileKeywordToken";
 
 export default class JSLoopWhilePattern extends AbstractParserPattern

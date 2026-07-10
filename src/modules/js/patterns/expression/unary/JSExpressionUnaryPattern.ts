@@ -1,5 +1,5 @@
 import JSExpressionBinaryPattern from "../binary/JSExpressionBinaryPattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorUnaryLeftPattern from "../../operator/unary/JSOperatorUnaryLeftPattern";
 import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
 import JSExpressionClosingQuoteToken from "../../../tokens/expression/quote/JSExpressionClosingQuoteToken";

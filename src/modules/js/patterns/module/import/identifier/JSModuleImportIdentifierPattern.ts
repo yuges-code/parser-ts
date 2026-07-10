@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNameToken from "../../../../tokens/variable/name/JSVariableNameToken";
 import JSOperatorCommaToken from "../../../../tokens/operator/comma/JSOperatorCommaToken";
 import JSModuleAsKeywordToken from "../../../../tokens/module/as/keyword/JSModuleAsKeywordToken";

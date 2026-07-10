@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNamePattern from "../../../../variable/name/JSVariableNamePattern";
 import JSDataBooleanPattern from "../../../boolean/JSDataBooleanPattern";
 import JSDataNullPattern from "../../../null/JSDataNullPattern";

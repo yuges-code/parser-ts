@@ -1,5 +1,5 @@
 import JSDataFunctionBodyPattern from "../body/JSDataFunctionBodyPattern";
-import AbstractParserPattern from "../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNameToken from "../../../../tokens/variable/name/JSVariableNameToken";
 import JSDataFunctionArgumentsPattern from "../arguments/JSDataFunctionArgumentsPattern";
 import JSExpressionBinaryPattern from "../../../expression/binary/JSExpressionBinaryPattern";

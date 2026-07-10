@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataNumberValueToken from "../../../tokens/data/number/JSDataNumberValueToken";
 import JSDataNumberSeparatorToken from "../../../tokens/data/number/JSDataNumberSeparatorToken";
 

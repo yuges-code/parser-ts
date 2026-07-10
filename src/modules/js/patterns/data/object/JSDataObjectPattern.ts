@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataObjectClosingQuoteToken from "../../../tokens/data/object/quote/JSDataObjectClosingQuoteToken";
 import JSDataObjectOpeningQuoteToken from "../../../tokens/data/object/quote/JSDataObjectOpeningQuoteToken";
 import JSDataObjectPropertyCollection from "../../../collections/data/object/property/JSDataObjectPropertyCollection";

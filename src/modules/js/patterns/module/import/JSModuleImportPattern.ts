@@ -1,5 +1,5 @@
 import JSDataStringPattern from "../../data/string/JSDataStringPattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSModuleImportIdentifiersPattern from "./identifiers/JSModuleImportIdentifiersPattern";
 import JSModuleFromKeywordToken from "../../../tokens/module/from/keyword/JSModuleFromKeywordToken";
 import JSModuleImportKeywordToken from "../../../tokens/module/import/keyword/JSModuleImportKeywordToken";

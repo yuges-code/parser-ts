@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorComparisonToken from "../../../tokens/operator/comparison/JSOperatorComparisonToken";
 
 export default class JSOperatorComparisonPattern extends AbstractParserPattern

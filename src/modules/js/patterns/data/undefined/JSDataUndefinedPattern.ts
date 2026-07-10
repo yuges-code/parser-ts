@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataUndefinedValueToken from "../../../tokens/data/undefined/JSDataUndefinedValueToken";
 
 export default class JSDataUndefinedPattern extends AbstractParserPattern

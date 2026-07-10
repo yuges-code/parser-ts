@@ -1,5 +1,5 @@
 import JSExpressionBinaryPattern from "../binary/JSExpressionBinaryPattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNameToken from "../../../tokens/variable/name/JSVariableNameToken";
 import JSVariableKeywordToken from "../../../tokens/variable/keyword/JSVariableKeywordToken";
 import JSOperatorAssignmentToken from "../../../tokens/operator/assignment/JSOperatorAssignmentToken";

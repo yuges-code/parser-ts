@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSExpressionBinaryPattern from "../../expression/binary/JSExpressionBinaryPattern";
 import JSExpressionDeclarationPattern from "../../expression/declaration/JSExpressionDeclarationPattern";
 import JSModuleExportKeywordToken from "../../../tokens/module/export/keyword/JSModuleExportKeywordToken";

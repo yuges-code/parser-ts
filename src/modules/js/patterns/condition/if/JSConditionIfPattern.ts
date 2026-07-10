@@ -2,7 +2,7 @@ import JSNodePattern from "../../JSNodePattern";
 import JSConditionPattern from "../JSConditionPattern";
 import JSConditionBodyPattern from "../body/JSConditionBodyPattern";
 import JSConditionElsePattern from "../else/JSConditionElsePattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSConditionIfKeywordToken from "../../../tokens/condition/if/keyword/JSConditionIfKeywordToken";
 
 export default class JSConditionIfPattern extends AbstractParserPattern

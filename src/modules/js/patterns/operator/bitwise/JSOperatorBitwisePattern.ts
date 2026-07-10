@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorBitwiseToken from "../../../tokens/operator/bitwise/JSOperatorBitwiseToken";
 
 export default class JSOperatorBitwisePattern extends AbstractParserPattern

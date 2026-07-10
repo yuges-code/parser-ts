@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorShiftToken from "../../../tokens/operator/shift/JSOperatorShiftToken";
 
 export default class JSOperatorShiftPattern extends AbstractParserPattern

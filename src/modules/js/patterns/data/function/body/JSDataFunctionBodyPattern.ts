@@ -1,5 +1,5 @@
 import JSNodeCollection from "../../../../collections/JSNodeCollection";
-import AbstractParserPattern from "../../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSDataFunctionBodyOpeningQuoteToken from "../../../../tokens/data/function/body/quote/JSDataFunctionBodyOpeningQuoteToken";
 import JSDataFunctionBodyClosingQuoteToken from "../../../../tokens/data/function/body/quote/JSDataFunctionBodyClosingQuoteToken";
 

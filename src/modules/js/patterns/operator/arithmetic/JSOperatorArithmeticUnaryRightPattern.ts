@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorArithmeticUnaryRightToken from "../../../tokens/operator/arithmetic/JSOperatorArithmeticUnaryRightToken";
 
 export default class JSOperatorArithmeticUnaryRightPattern extends AbstractParserPattern

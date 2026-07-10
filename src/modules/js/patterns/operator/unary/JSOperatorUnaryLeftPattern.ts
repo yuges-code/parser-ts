@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorLogicalUnaryLeftPattern from "../logical/JSOperatorLogicalUnaryLeftPattern";
 import JSOperatorArithmeticUnaryLeftPattern from "../arithmetic/JSOperatorArithmeticUnaryLeftPattern";
 import JSOperatorBitwiseUnaryLeftPattern from "../bitwise/JSOperatorBitwiseUnaryLeftPattern";

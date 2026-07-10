@@ -1,6 +1,6 @@
 import JSVariablePattern from "../../variable/JSVariablePattern";
 import JSExpressionUnaryPattern from "../unary/JSExpressionUnaryPattern";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorBinaryPattern from "../../operator/binary/JSOperatorBinaryPattern";
 import JSDataFunctionArrowPattern from "../../data/function/arrow/JSDataFunctionArrowPattern";
 import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";

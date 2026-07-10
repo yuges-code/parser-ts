@@ -2,7 +2,7 @@ import JSLoopWhilePattern from "./loop/while/JSLoopWhilePattern";
 import JSConditionIfPattern from "./condition/if/JSConditionIfPattern";
 import JSModuleImportPattern from "./module/import/JSModuleImportPattern";
 import JSModuleExportPattern from "./module/export/JSModuleExportPattern";
-import AbstractParserPattern from "../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../core/abstracts/AbstractParserPattern";
 import JSExpressionBinaryPattern from "./expression/binary/JSExpressionBinaryPattern";
 import JSExpressionDeclarationPattern from "./expression/declaration/JSExpressionDeclarationPattern";
 

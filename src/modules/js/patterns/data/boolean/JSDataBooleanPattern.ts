@@ -1,4 +1,4 @@
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataBooleanValueToken from "../../../tokens/data/boolean/JSDataBooleanValueToken";
 
 export default class JSDataBooleanPattern extends AbstractParserPattern

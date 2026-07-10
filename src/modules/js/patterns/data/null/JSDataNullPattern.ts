@@ -1,5 +1,5 @@
 import JSDataNullValueToken from "../../../tokens/data/null/JSDataNullValueToken";
-import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 
 export default class JSDataNullPattern extends AbstractParserPattern
 {
