@@ -31,7 +31,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node ./scripts/test.js"
   },
   "devDependencies": {
     "typescript": "~6.0.2",
