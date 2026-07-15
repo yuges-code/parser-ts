@@ -1,3 +1,4 @@
+import JSLoopForPattern from "./loop/for/JSLoopForPattern";
 import JSLoopWhilePattern from "./loop/while/JSLoopWhilePattern";
 import JSConditionIfPattern from "./condition/if/JSConditionIfPattern";
 import JSModuleImportPattern from "./module/import/JSModuleImportPattern";
@@ -13,10 +14,10 @@ export default class JSNodePattern extends AbstractParserPattern
         JSModuleExportPattern,
         JSConditionIfPattern,
         JSExpressionDeclarationPattern,
+        JSLoopForPattern,
         JSLoopWhilePattern,
         JSExpressionBinaryPattern,
 
-        // for
         // switch
         // comment
     ];

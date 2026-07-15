@@ -4,15 +4,8 @@ import parser from "../dist/parser-ts.js";
 
 const content = `
     <script>
-
-        if (true) {
-            const fn = (number) => { number * 4 };
-        } else if (false) {
-            if (4+6) {
-                const d= 3;
-            }
-        } else {
-            
+        for (let index = 0; index < array.length; index++) {
+            const element = array;
         }
     </script>
 `;

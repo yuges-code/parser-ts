@@ -1,17 +1,34 @@
 import JSVariablePattern from "../../variable/JSVariablePattern";
 import JSExpressionUnaryPattern from "../unary/JSExpressionUnaryPattern";
-import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
+import JSOperatorShiftPattern from "../../operator/shift/JSOperatorShiftPattern";
 import JSOperatorBinaryPattern from "../../operator/binary/JSOperatorBinaryPattern";
+import JSOperatorBitwisePattern from "../../operator/bitwise/JSOperatorBitwisePattern";
+import JSOperatorLogicalPattern from "../../operator/logical/JSOperatorLogicalPattern";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataFunctionArrowPattern from "../../data/function/arrow/JSDataFunctionArrowPattern";
-import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
+import JSOperatorAssignmentPattern from "../../operator/assignment/JSOperatorAssignmentPattern";
+import JSOperatorComparisonPattern from "../../operator/comparison/JSOperatorComparisonPattern";
+import JSOperatorArithmeticPattern from "../../operator/arithmetic/JSOperatorArithmeticPattern";
 import JSExpressionClosingQuoteToken from "../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
+import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
+import JSOperatorAssignmentArithmeticPattern from "../../operator/assignment/JSOperatorAssignmentArithmeticPattern";
 
 export default class JSExpressionBinaryPattern extends AbstractParserPattern
 {
     openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
     expression = undefined as JSExpressionBinaryPattern | undefined;
     left = undefined as JSVariablePattern | JSExpressionUnaryPattern | JSDataFunctionArrowPattern | undefined;
-    operator = undefined as JSOperatorBinaryPattern | undefined;
+
+    operator = undefined as 
+        JSOperatorAssignmentArithmeticPattern |
+        JSOperatorShiftPattern |
+        JSOperatorComparisonPattern |
+        JSOperatorArithmeticPattern |
+        JSOperatorAssignmentPattern |
+        JSOperatorLogicalPattern |
+        JSOperatorBitwisePattern |
+        undefined;
+
     right = undefined as JSExpressionBinaryPattern | undefined;
     closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
 
@@ -68,7 +85,8 @@ export default class JSExpressionBinaryPattern extends AbstractParserPattern
             required: false,
         }, {
             name: 'right',
-            required: () => this.operator != undefined,
+            required: () => this.operator != undefined &&
+                    !['++', '--', '**'].includes(this.operator?.operator?.lexeme || ''),
             disabled: () => this.operator === undefined,
             element: JSExpressionBinaryPattern,
         }, {

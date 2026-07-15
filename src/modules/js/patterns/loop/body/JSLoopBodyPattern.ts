@@ -1,9 +1,9 @@
-import JSNodeCollection from "../../../../collections/JSNodeCollection";
-import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
-import JSLoopBodyOpeningQuoteToken from "../../../../tokens/loop/body/quote/JSLoopBodyOpeningQuoteToken";
-import JSLoopBodyClosingQuoteToken from "../../../../tokens/loop/body/quote/JSLoopBodyClosingQuoteToken";
+import JSNodeCollection from "../../../collections/JSNodeCollection";
+import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
+import JSLoopBodyOpeningQuoteToken from "../../../tokens/loop/body/quote/JSLoopBodyOpeningQuoteToken";
+import JSLoopBodyClosingQuoteToken from "../../../tokens/loop/body/quote/JSLoopBodyClosingQuoteToken";
 
-export default class JSLoopWhileBodyPattern extends AbstractParserPattern
+export default class JSLoopBodyPattern extends AbstractParserPattern
 {
     openingQuote = undefined as JSLoopBodyOpeningQuoteToken | undefined;
     instructions = undefined as JSNodeCollection | undefined;

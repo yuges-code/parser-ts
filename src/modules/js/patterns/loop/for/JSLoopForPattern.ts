@@ -1,13 +1,13 @@
 import JSNodePattern from "../../JSNodePattern";
 import JSLoopBodyPattern from "../body/JSLoopBodyPattern";
-import JSLoopWhileConditionPattern from "./condition/JSLoopWhileConditionPattern";
+import JSLoopForConditionPattern from "./condition/JSLoopForConditionPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSLoopWhileKeywordToken from "../../../tokens/loop/while/keyword/JSLoopWhileKeywordToken";
+import JSLoopForKeywordToken from "../../../tokens/loop/for/keyword/JSLoopForKeywordToken";
 
-export default class JSLoopWhilePattern extends AbstractParserPattern
+export default class JSLoopForPattern extends AbstractParserPattern
 {
-    keyword = undefined as JSLoopWhileKeywordToken | undefined;
-    condition = undefined as JSLoopWhileConditionPattern | undefined;
+    keyword = undefined as JSLoopForKeywordToken | undefined;
+    condition = undefined as JSLoopForConditionPattern | undefined;
     body = undefined as JSLoopBodyPattern | undefined;
 
     properties = () => [
@@ -20,14 +20,14 @@ export default class JSLoopWhilePattern extends AbstractParserPattern
         {
             name: 'keyword',
             required: true,
-            element: JSLoopWhileKeywordToken,
+            element: JSLoopForKeywordToken,
         }, {
             skip: /[\s]/,
             required: false,
         }, {
             name: 'condition',
             required: true,
-            element: JSLoopWhileConditionPattern,
+            element: JSLoopForConditionPattern,
         }, {
             skip: /[\s]/,
             required: false,
