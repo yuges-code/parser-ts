@@ -34,6 +34,12 @@ interface Rules {
         content: string,
         position: number,
         parent: T
+    ) => string | string[],
+    disabled?: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T
     ) => string | string[]
 };
 
@@ -61,36 +67,12 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
     };
 
     rules = (): Rules => ({
-        start: (
-            symbol: string,
-            content: string,
-            position: number,
-            parent: AbstractParserPattern
-        ) => true,
-        final: (
-            symbol: string,
-            content: string,
-            position: number,
-            parent: AbstractParserPattern
-        ) => true,
-        symbol: (
-            symbol: string,
-            content: string,
-            position: number,
-            parent: AbstractParserPattern
-        ) => true,
-        length: (
-            symbol: string,
-            content: string,
-            position: number,
-            parent: AbstractParserPattern
-        ): undefined | number => undefined,
-        lexeme: (
-            symbol: string,
-            content: string,
-            position: number,
-            parent: AbstractParserPattern
-        ) => [],
+        start: () => true,
+        final: () => true,
+        symbol: () => true,
+        length: (): undefined | number => undefined,
+        lexeme: () => [],
+        disabled: () => [],
     });
 
     static rules()
@@ -124,6 +106,7 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
         }
 
         const lexeme = rules.lexeme?.(content[position], content, position, parent);
+        const disabled = rules.disabled?.(content[position], content, position, parent);
 
         position = read(content, position, (content, position) => {
             const length = rules.length?.(content[position], content, position, parent);
@@ -163,6 +146,15 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
             }
         }
 
+        if (disabled && disabled.length) {
+            if (instance.disabledIncludes(disabled, instance.lexeme || '')) {
+                return {
+                    token: undefined,
+                    position: instance.position?.start || 0,
+                };
+            }
+        }
+
         return {
             token: instance,
             position: position,
@@ -177,5 +169,10 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
     lexemeIncludes(lexeme: string | string[], str: string)
     {
         return Array.isArray(lexeme) ? lexeme.includes(str) : lexeme === str;
+    }
+
+    disabledIncludes(disabled: string | string[], str: string)
+    {
+        return Array.isArray(disabled) ? disabled.includes(str) : disabled === str;
     }
 };

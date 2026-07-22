@@ -4,6 +4,9 @@ import JSConditionIfPattern from "./condition/if/JSConditionIfPattern";
 import JSModuleImportPattern from "./module/import/JSModuleImportPattern";
 import JSModuleExportPattern from "./module/export/JSModuleExportPattern";
 import AbstractParserPattern from "../../../core/abstracts/AbstractParserPattern";
+import JSConditionSwitchPattern from "./condition/switch/JSConditionSwitchPattern";
+import JSExpressionBreakPattern from "./expression/break/JSExpressionBreakPattern";
+import JSExpressionReturnPattern from "./expression/return/JSExpressionReturnPattern";
 import JSExpressionBinaryPattern from "./expression/binary/JSExpressionBinaryPattern";
 import JSExpressionDeclarationPattern from "./expression/declaration/JSExpressionDeclarationPattern";
 
@@ -13,12 +16,14 @@ export default class JSNodePattern extends AbstractParserPattern
         JSModuleImportPattern,
         JSModuleExportPattern,
         JSConditionIfPattern,
+        JSConditionSwitchPattern,
+        JSExpressionBreakPattern,
+        JSExpressionReturnPattern,
         JSExpressionDeclarationPattern,
         JSLoopForPattern,
         JSLoopWhilePattern,
         JSExpressionBinaryPattern,
 
-        // switch
         // comment
     ];
 };

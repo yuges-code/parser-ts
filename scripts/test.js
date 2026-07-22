@@ -4,8 +4,12 @@ import parser from "../dist/parser-ts.js";
 
 const content = `
     <script>
-        for (let index = 0; index < array.length; index++) {
-            const element = array;
+        switch (1+4) {
+            case 5:
+                break;
+
+            default:
+                break;
         }
     </script>
 `;
