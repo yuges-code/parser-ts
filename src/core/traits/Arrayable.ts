@@ -1,4 +1,4 @@
-import Propertyable from "./Propertyable";
+import Propertyable, { type Properties } from "./Propertyable";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -10,19 +10,32 @@ export default function Arrayable<T extends Constructor>(base: T)
         {
             const properties = this.properties();
 
-            var array = {} as {
-                [key in (typeof properties)[number]]: any
+            return this.toNestedArray(properties);
+        };
+
+        toNestedArray(properties: Properties, current = this as Record<string, any>)
+        {
+            var array = {} as Record<string, any>;
+
+            if (typeof properties !== 'object') {
+                return [];
             }
 
             properties.forEach((property) => {
-                if (typeof this[property]?.toArray === 'function') {
-                    array[property] = this[property].toArray();
+                if (typeof property === 'string') {
+                    if (typeof current[property]?.toArray === 'function') {
+                        array[property] = current[property].toArray();
+                    } else {
+                        array[property] = current[property];
+                    }
                 } else {
-                    array[property] = this[property];
+                    for (var key in property) {
+                        array[key] = this.toNestedArray(property[key], current[key]);
+                    }
                 }
             });
 
             return array;
-        };
+        }
     };
 };
