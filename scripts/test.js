@@ -5,7 +5,7 @@ import parser from "../dist/parser-ts.js";
 const content = `
     <script>
         switch (1+4) {
-            case 5:
+            case "lol":
                 break;
 
             default:

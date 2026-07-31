@@ -1,25 +1,28 @@
 import JSNodeCollection from "../../../collections/JSNodeCollection";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSConditionBodyClosingQuoteToken from "../../../tokens/condition/body/quote/JSConditionBodyClosingQuoteToken";
-import JSConditionBodyOpeningQuoteToken from "../../../tokens/condition/body/quote/JSConditionBodyOpeningQuoteToken";
+import PUNCTBracketCurlyOpenToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
+import PUNCTBracketCurlyCloseToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
 
 export default class JSConditionBodyPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSConditionBodyOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketCurlyOpenToken | undefined,
+        close: undefined as PUNCTBracketCurlyCloseToken | undefined,
+    };
     instructions = undefined as JSNodeCollection | undefined;
-    closingQuote = undefined as JSConditionBodyClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'instructions',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSConditionBodyOpeningQuoteToken,
+            element: PUNCTBracketCurlyOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -31,9 +34,9 @@ export default class JSConditionBodyPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSConditionBodyClosingQuoteToken,
+            element: PUNCTBracketCurlyCloseToken,
         },
     ];
 };

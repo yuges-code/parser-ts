@@ -1,25 +1,28 @@
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSDataObjectClosingQuoteToken from "../../../tokens/data/object/quote/JSDataObjectClosingQuoteToken";
-import JSDataObjectOpeningQuoteToken from "../../../tokens/data/object/quote/JSDataObjectOpeningQuoteToken";
+import PUNCTBracketCurlyOpenToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
+import PUNCTBracketCurlyCloseToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
 import JSDataObjectPropertyCollection from "../../../collections/data/object/property/JSDataObjectPropertyCollection";
 
 export default class JSDataObjectPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSDataObjectOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketCurlyOpenToken | undefined,
+        close: undefined as PUNCTBracketCurlyCloseToken | undefined,
+    };
     values = undefined as JSDataObjectPropertyCollection | undefined;
-    closingQuote = undefined as JSDataObjectClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'values',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSDataObjectOpeningQuoteToken,
+            element: PUNCTBracketCurlyOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -31,9 +34,9 @@ export default class JSDataObjectPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSDataObjectClosingQuoteToken,
+            element: PUNCTBracketCurlyCloseToken,
         }
     ];
 };

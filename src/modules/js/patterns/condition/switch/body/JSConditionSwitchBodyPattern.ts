@@ -1,25 +1,28 @@
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
-import JSConditionBodyOpeningQuoteToken from "../../../../tokens/condition/body/quote/JSConditionBodyOpeningQuoteToken";
-import JSConditionBodyClosingQuoteToken from "../../../../tokens/condition/body/quote/JSConditionBodyClosingQuoteToken";
+import PUNCTBracketCurlyOpenToken from "../../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
+import PUNCTBracketCurlyCloseToken from "../../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
 import JSConditionSwitchCaseCollection from "../../../../collections/condition/switch/case/JSConditionSwitchCaseCollection";
 
 export default class JSConditionSwitchBodyPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSConditionBodyOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketCurlyOpenToken | undefined,
+        close: undefined as PUNCTBracketCurlyCloseToken | undefined,
+    }
     cases = undefined as JSConditionSwitchCaseCollection | undefined;
-    closingQuote = undefined as JSConditionBodyClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'cases',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSConditionBodyOpeningQuoteToken,
+            element: PUNCTBracketCurlyOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -31,9 +34,9 @@ export default class JSConditionSwitchBodyPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSConditionBodyClosingQuoteToken,
+            element: PUNCTBracketCurlyCloseToken,
         },
     ];
 };

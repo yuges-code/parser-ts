@@ -24,7 +24,7 @@ export default function Patternable<T extends Constructor>(base: T)
                 name: string,
                 required: boolean | (() => boolean),
                 disabled?: boolean | (() => boolean),
-                element: Element | (() => Element),
+                element: Element | Element[] | (() => Element | Element[]),
             } | {
                 skip: RegExp,
                 required: boolean | (() => boolean),
@@ -72,17 +72,12 @@ export default function Patternable<T extends Constructor>(base: T)
                     continue;
                 }
 
-                const result = { position } = (this.isClassConstructor(item.element) ? item.element : item.element())
-                    .parse(
-                        content,
-                        position,
-                        instance as any as AbstractParserPattern
-                    );
-
-                const element =
-                    'token' in result ? result.token :
-                    'pattern' in result ? result.pattern :
-                    'collection' in result ? result.collection : undefined;
+                var { element, position } = this.parseElements(
+                    item.element,
+                    content,
+                    position,
+                    instance as any as AbstractParserPattern
+                );
 
                 if (! element && (
                         (typeof item.required === 'boolean' && item.required) ||
@@ -122,5 +117,50 @@ export default function Patternable<T extends Constructor>(base: T)
                 return true;
             }
         };
+
+        static parseElements(
+            elements: Element | Element[] | (() => Element | Element[]),
+            content: string,
+            position: number,
+            instance: AbstractParserPattern,
+        )
+        {
+            const data = {
+                element: undefined as
+                    AbstractParserToken |
+                    AbstractParserPattern |
+                    AbstractParserPatternCollection | undefined,
+                position: 0,
+            };
+
+            if (! this.isClassConstructor(elements) && !Array.isArray(elements)) {
+                elements = elements();
+            }
+
+            elements = this.isClassConstructor(elements) ? [elements] : elements;
+
+            for (let index = 0; index < elements.length; index++) {
+                const element = elements[index];
+
+                const result = element.parse(
+                    content,
+                    position,
+                    instance as any as AbstractParserPattern
+                );
+
+                data.element =
+                    'token' in result ? result.token :
+                    'pattern' in result ? result.pattern :
+                    'collection' in result ? result.collection : undefined;
+
+                data.position = result.position;
+
+                if (data.element) {
+                    break;
+                }
+            }
+
+            return data;
+        }
     };
 };

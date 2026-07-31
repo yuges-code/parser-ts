@@ -1,33 +1,47 @@
+import AbstractParserToken from "../../../../../core/abstracts/AbstractParserToken";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSDataStringValueToken from "../../../tokens/data/string/value/JSDataStringValueToken";
-import JSDataStringOpeningQuoteToken from "../../../tokens/data/string/quote/JSDataStringOpeningQuoteToken";
-import JSDataStringClosingQuoteToken from "../../../tokens/data/string/quote/JSDataStringClosingQuoteToken";
+import PUNCTSpecialBacktickToken from "../../../../punct/tokens/special/PUNCTSpecialBacktickToken";
+import PUNCTSpecialQuoteSingleToken from "../../../../punct/tokens/special/quote/PUNCTSpecialQuoteSingleToken";
+import PUNCTSpecialQuoteDoubleToken from "../../../../punct/tokens/special/quote/PUNCTSpecialQuoteDoubleToken";
+
+type Bracket =
+    PUNCTSpecialBacktickToken |
+    PUNCTSpecialQuoteSingleToken |
+    PUNCTSpecialQuoteDoubleToken ;
 
 export default class JSDataStringPattern extends AbstractParserPattern
 {
+    bracket = {
+        open: undefined as Bracket | undefined,
+        close: undefined as Bracket | undefined,
+    };
     value = undefined as JSDataStringValueToken | undefined;
-    openingQuote = undefined as JSDataStringOpeningQuoteToken | undefined;
-    closingQuote = undefined as JSDataStringClosingQuoteToken | undefined;
 
     properties = () => [
         'value',
-        'openingQuote',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSDataStringOpeningQuoteToken,
+            element: [
+                PUNCTSpecialBacktickToken,
+                PUNCTSpecialQuoteSingleToken,
+                PUNCTSpecialQuoteDoubleToken,
+            ],
         }, {
             name: 'value',
             required: false,
             element: JSDataStringValueToken,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSDataStringClosingQuoteToken,
+            element: () => this.bracket.open?.constructor as any as typeof AbstractParserToken,
         },
     ];
 };

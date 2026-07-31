@@ -12,10 +12,10 @@ export default class JSConditionPattern extends AbstractParserPattern
     expression = undefined as JSExpressionBinaryPattern | undefined;
 
     properties = () => [
-        {
-            'bracket': ['open', 'close']
-        },
         'expression',
+        {
+            'bracket': ['open', 'close'],
+        },
     ]
 
     pattern = () => [
