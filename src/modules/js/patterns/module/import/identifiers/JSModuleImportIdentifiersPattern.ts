@@ -1,43 +1,49 @@
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSModuleImportIdentifierPattern from "../identifier/JSModuleImportIdentifierPattern";
-import JSDataObjectOpeningQuoteToken from "../../../../tokens/data/object/quote/JSDataObjectOpeningQuoteToken";
-import JSDataObjectClosingQuoteToken from "../../../../tokens/data/object/quote/JSDataObjectClosingQuoteToken";
+import PUNCTBracketCurlyOpenToken from "../../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
+import PUNCTBracketCurlyCloseToken from "../../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
 import JSModuleImportIdentifierCollection from "../../../../collections/module/import/identifier/JSModuleImportIdentifierCollection";
 
 export default class JSModuleImportIdentifiersPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSDataObjectOpeningQuoteToken | undefined;
-    values = undefined as JSModuleImportIdentifierCollection | JSModuleImportIdentifierPattern | undefined;
-    closingQuote = undefined as JSDataObjectClosingQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketCurlyOpenToken | undefined,
+        close: undefined as PUNCTBracketCurlyCloseToken | undefined,
+    };
+    values = undefined as
+        undefined |
+        JSModuleImportIdentifierPattern |
+        JSModuleImportIdentifierCollection;
 
     properties = () => [
-        'openingQuote',
         'values',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: false,
-            element: JSDataObjectOpeningQuoteToken,
+            element: PUNCTBracketCurlyOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
         }, {
             name: 'values',
             required: true,
-            element: () => this.openingQuote === undefined
+            element: () => this.bracket.open === undefined
                 ? JSModuleImportIdentifierPattern
                 : JSModuleImportIdentifierCollection,
         }, {
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
-            required: () => this.openingQuote != undefined,
-            disabled: () => this.openingQuote === undefined,
-            element: JSDataObjectClosingQuoteToken,
+            name: 'bracket.close',
+            required: () => this.bracket.open != undefined,
+            disabled: () => this.bracket.open === undefined,
+            element: PUNCTBracketCurlyCloseToken,
         },
     ];
 };

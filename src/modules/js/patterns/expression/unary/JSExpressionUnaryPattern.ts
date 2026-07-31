@@ -1,21 +1,24 @@
 import JSExpressionBinaryPattern from "../binary/JSExpressionBinaryPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSOperatorUnaryLeftPattern from "../../operator/unary/JSOperatorUnaryLeftPattern";
-import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
-import JSExpressionClosingQuoteToken from "../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
+import PUNCTBracketRoundOpenToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundOpenToken";
+import PUNCTBracketRoundCloseToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundCloseToken";
 
 export default class JSExpressionUnaryPattern extends AbstractParserPattern
 {
+    bracket = {
+        open: undefined as PUNCTBracketRoundOpenToken | undefined,
+        close: undefined as PUNCTBracketRoundCloseToken | undefined,
+    };
     operator = undefined as JSOperatorUnaryLeftPattern | undefined;
-    openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
     right = undefined as JSExpressionUnaryPattern | JSExpressionBinaryPattern | undefined;
-    closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
 
     properties = () => [
         'operator',
-        'openingQuote',
         'right',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
@@ -27,9 +30,9 @@ export default class JSExpressionUnaryPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: false,
-            element: JSExpressionOpeningQuoteToken,
+            element: PUNCTBracketRoundOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -41,10 +44,10 @@ export default class JSExpressionUnaryPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
-            required: () => this.openingQuote != undefined,
-            disabled: () => this.openingQuote === undefined,
-            element: JSExpressionClosingQuoteToken,
+            name: 'bracket.close',
+            required: () => this.bracket.open != undefined,
+            disabled: () => this.bracket.open === undefined,
+            element: PUNCTBracketRoundCloseToken,
         },
     ];
 };

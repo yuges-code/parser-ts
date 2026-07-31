@@ -8,7 +8,7 @@ import PUNCTSpecialQuoteDoubleToken from "../../../../punct/tokens/special/quote
 type Bracket =
     PUNCTSpecialBacktickToken |
     PUNCTSpecialQuoteSingleToken |
-    PUNCTSpecialQuoteDoubleToken ;
+    PUNCTSpecialQuoteDoubleToken;
 
 export default class JSDataStringPattern extends AbstractParserPattern
 {

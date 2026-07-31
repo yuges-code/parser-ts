@@ -1,29 +1,32 @@
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSExpressionClosingQuoteToken from "../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
-import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
+import PUNCTBracketRoundOpenToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundOpenToken";
+import PUNCTBracketRoundCloseToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundCloseToken";
 
 export default class JSExpressionCallingPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
-    closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketRoundOpenToken | undefined,
+        close: undefined as PUNCTBracketRoundCloseToken | undefined,
+    };
 
     properties = () => [
-        'openingQuote',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSExpressionOpeningQuoteToken,
+            element: PUNCTBracketRoundOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSExpressionClosingQuoteToken,
+            element: PUNCTBracketRoundCloseToken,
         },
     ];
 };

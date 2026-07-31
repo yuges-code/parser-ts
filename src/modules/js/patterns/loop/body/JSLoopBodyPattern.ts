@@ -1,25 +1,28 @@
 import JSNodeCollection from "../../../collections/JSNodeCollection";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSLoopBodyOpeningQuoteToken from "../../../tokens/loop/body/quote/JSLoopBodyOpeningQuoteToken";
-import JSLoopBodyClosingQuoteToken from "../../../tokens/loop/body/quote/JSLoopBodyClosingQuoteToken";
+import PUNCTBracketCurlyOpenToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
+import PUNCTBracketCurlyCloseToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
 
 export default class JSLoopBodyPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSLoopBodyOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketCurlyOpenToken | undefined,
+        close: undefined as PUNCTBracketCurlyCloseToken | undefined,
+    };
     instructions = undefined as JSNodeCollection | undefined;
-    closingQuote = undefined as JSLoopBodyClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'instructions',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSLoopBodyOpeningQuoteToken,
+            element: PUNCTBracketCurlyOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -31,9 +34,9 @@ export default class JSLoopBodyPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSLoopBodyClosingQuoteToken,
+            element: PUNCTBracketCurlyCloseToken,
         },
     ];
 };

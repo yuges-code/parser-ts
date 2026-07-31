@@ -9,13 +9,17 @@ import JSDataFunctionArrowPattern from "../../data/function/arrow/JSDataFunction
 import JSOperatorAssignmentPattern from "../../operator/assignment/JSOperatorAssignmentPattern";
 import JSOperatorComparisonPattern from "../../operator/comparison/JSOperatorComparisonPattern";
 import JSOperatorArithmeticPattern from "../../operator/arithmetic/JSOperatorArithmeticPattern";
-import JSExpressionClosingQuoteToken from "../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
-import JSExpressionOpeningQuoteToken from "../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
+import PUNCTBracketRoundOpenToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundOpenToken";
+import PUNCTBracketRoundCloseToken from "../../../../punct/tokens/bracket/round/PUNCTBracketRoundCloseToken";
 import JSOperatorAssignmentArithmeticPattern from "../../operator/assignment/JSOperatorAssignmentArithmeticPattern";
 
 export default class JSExpressionBinaryPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketRoundOpenToken | undefined,
+        close: undefined as PUNCTBracketRoundCloseToken | undefined,
+    };
+
     expression = undefined as JSExpressionBinaryPattern | undefined;
     left = undefined as JSVariablePattern | JSExpressionUnaryPattern | JSDataFunctionArrowPattern | undefined;
 
@@ -30,15 +34,15 @@ export default class JSExpressionBinaryPattern extends AbstractParserPattern
         undefined;
 
     right = undefined as JSExpressionBinaryPattern | undefined;
-    closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'expression',
         'left',
         'operator',
         'right',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
@@ -47,22 +51,22 @@ export default class JSExpressionBinaryPattern extends AbstractParserPattern
             required: false,
             element: JSDataFunctionArrowPattern,
         },{
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: false,
-            element: JSExpressionOpeningQuoteToken,
+            element: PUNCTBracketRoundOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
         }, {
             name: 'expression',
-            required: () => this.openingQuote != undefined,
-            disabled: () => this.openingQuote === undefined,
+            required: () => this.bracket.open != undefined,
+            disabled: () => this.bracket.open === undefined,
             element: JSExpressionBinaryPattern,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: () => this.expression != undefined,
             disabled: () => this.expression === undefined,
-            element: JSExpressionClosingQuoteToken,
+            element: PUNCTBracketRoundCloseToken,
         }, {
             name: 'left',
             required: false,
@@ -93,10 +97,10 @@ export default class JSExpressionBinaryPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
-            required: () => this.openingQuote != undefined && this.closingQuote === undefined,
-            disabled: () => this.openingQuote === undefined || this.closingQuote != undefined,
-            element: JSExpressionClosingQuoteToken,
+            name: 'bracket.close',
+            required: () => this.bracket.open != undefined && this.bracket.close === undefined,
+            disabled: () => this.bracket.open === undefined || this.bracket.close != undefined,
+            element: PUNCTBracketRoundCloseToken,
         },
     ];
 };

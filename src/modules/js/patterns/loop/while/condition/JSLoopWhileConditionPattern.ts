@@ -1,25 +1,28 @@
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
-import JSExpressionClosingQuoteToken from "../../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
-import JSExpressionOpeningQuoteToken from "../../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
 import JSExpressionBinaryPattern from "../../../expression/binary/JSExpressionBinaryPattern";
+import PUNCTBracketRoundOpenToken from "../../../../../punct/tokens/bracket/round/PUNCTBracketRoundOpenToken";
+import PUNCTBracketRoundCloseToken from "../../../../../punct/tokens/bracket/round/PUNCTBracketRoundCloseToken";
 
 export default class JSLoopWhileConditionPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketRoundOpenToken | undefined,
+        close: undefined as PUNCTBracketRoundCloseToken | undefined,
+    };
     expression = undefined as JSExpressionBinaryPattern | undefined;
-    closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'expression',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSExpressionOpeningQuoteToken,
+            element: PUNCTBracketRoundOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -31,9 +34,9 @@ export default class JSLoopWhileConditionPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSExpressionClosingQuoteToken,
+            element: PUNCTBracketRoundCloseToken,
         },
     ];
 };

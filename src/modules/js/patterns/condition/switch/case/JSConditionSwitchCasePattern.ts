@@ -14,11 +14,13 @@ export default class JSConditionSwitchCasePattern extends AbstractParserPattern
 
     expression = undefined as JSExpressionBinaryPattern | undefined;
     separator = undefined as JSConditionSwitchCaseSeparatorToken | undefined;
+    instructions = undefined as JSNodeCollection | undefined;
 
     properties = () => [
         'keyword',
         'expression',
         'separator',
+        'instructions',
     ];
 
     pattern = () => [

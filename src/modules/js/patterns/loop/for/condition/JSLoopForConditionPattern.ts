@@ -1,35 +1,43 @@
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSExpressionBinaryPattern from "../../../expression/binary/JSExpressionBinaryPattern";
 import JSExpressionDeclarationPattern from "../../../expression/declaration/JSExpressionDeclarationPattern";
-import JSExpressionClosingQuoteToken from "../../../../tokens/expression/quote/JSExpressionClosingQuoteToken";
-import JSExpressionOpeningQuoteToken from "../../../../tokens/expression/quote/JSExpressionOpeningQuoteToken";
-import JSLoopForConditionSeparatorToken from "../../../../tokens/loop/for/condition/separator/JSLoopForConditionSeparatorToken";
+import PUNCTBracketRoundOpenToken from "../../../../../punct/tokens/bracket/round/PUNCTBracketRoundOpenToken";
+import PUNCTSeparatorSemicolonToken from "../../../../../punct/tokens/separator/PUNCTSeparatorSemicolonToken";
+import PUNCTBracketRoundCloseToken from "../../../../../punct/tokens/bracket/round/PUNCTBracketRoundCloseToken";
 
 export default class JSLoopForConditionPattern extends AbstractParserPattern
 {
-    openingQuote = undefined as JSExpressionOpeningQuoteToken | undefined;
-    initialization = undefined as JSExpressionBinaryPattern | JSExpressionDeclarationPattern | undefined;
-    separatorOne = undefined as JSLoopForConditionSeparatorToken | undefined;
+    bracket = {
+        open: undefined as PUNCTBracketRoundOpenToken | undefined,
+        close: undefined as PUNCTBracketRoundCloseToken | undefined,
+    };
+    separator = {
+        first: undefined as PUNCTSeparatorSemicolonToken | undefined,
+        second: undefined as PUNCTSeparatorSemicolonToken | undefined,
+    }
+
+    initialization = undefined as
+        undefined |
+        JSExpressionBinaryPattern |
+        JSExpressionDeclarationPattern;
     condition = undefined as JSExpressionBinaryPattern | undefined;
-    separatorTwo = undefined as JSLoopForConditionSeparatorToken | undefined;
     expression = undefined as JSExpressionBinaryPattern | undefined;
-    closingQuote = undefined as JSExpressionClosingQuoteToken | undefined;
 
     properties = () => [
-        'openingQuote',
         'initialization',
-        'separatorOne',
         'condition',
-        'separatorTwo',
         'expression',
-        'closingQuote',
+        {
+            'bracket': ['open', 'close'],
+            'separator': ['first', 'second'],
+        },
     ];
 
     pattern = () => [
         {
-            name: 'openingQuote',
+            name: 'bracket.open',
             required: true,
-            element: JSExpressionOpeningQuoteToken,
+            element: PUNCTBracketRoundOpenToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -46,9 +54,9 @@ export default class JSLoopForConditionPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'separatorOne',
+            name: 'separator.first',
             required: true,
-            element: JSLoopForConditionSeparatorToken,
+            element: PUNCTSeparatorSemicolonToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -60,9 +68,9 @@ export default class JSLoopForConditionPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'separatorTwo',
+            name: 'separator.second',
             required: true,
-            element: JSLoopForConditionSeparatorToken,
+            element: PUNCTSeparatorSemicolonToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -74,9 +82,9 @@ export default class JSLoopForConditionPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'closingQuote',
+            name: 'bracket.close',
             required: true,
-            element: JSExpressionClosingQuoteToken,
+            element: PUNCTBracketRoundCloseToken,
         },
     ];
 };
