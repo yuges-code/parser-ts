@@ -1,8 +1,8 @@
 import JSNodeCollection from "../../../../collections/JSNodeCollection";
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSExpressionBinaryPattern from "../../../expression/binary/JSExpressionBinaryPattern";
+import PUNCTSeparatorColonToken from "../../../../../punct/tokens/separator/PUNCTSeparatorColonToken";
 import JSConditionSwitchCaseKeywordToken from "../../../../tokens/condition/switch/case/keyword/JSConditionSwitchCaseKeywordToken";
-import JSConditionSwitchCaseSeparatorToken from "../../../../tokens/condition/switch/case/separator/JSConditionSwitchCaseSeparatorToken";
 import JSConditionSwitchDefaultKeywordToken from "../../../../tokens/condition/switch/default/keyword/JSConditionSwitchDefaultKeywordToken";
 
 export default class JSConditionSwitchCasePattern extends AbstractParserPattern
@@ -13,7 +13,7 @@ export default class JSConditionSwitchCasePattern extends AbstractParserPattern
         undefined;
 
     expression = undefined as JSExpressionBinaryPattern | undefined;
-    separator = undefined as JSConditionSwitchCaseSeparatorToken | undefined;
+    separator = undefined as PUNCTSeparatorColonToken | undefined;
     instructions = undefined as JSNodeCollection | undefined;
 
     properties = () => [
@@ -46,7 +46,7 @@ export default class JSConditionSwitchCasePattern extends AbstractParserPattern
         }, {
             name: 'separator',
             required: true,
-            element: JSConditionSwitchCaseSeparatorToken,
+            element: PUNCTSeparatorColonToken,
         }, {
             name: 'instructions',
             required: true,

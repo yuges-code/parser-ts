@@ -1,23 +1,24 @@
-import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import JSVariableNameToken from "../../../../tokens/variable/name/JSVariableNameToken";
-import JSOperatorCommaToken from "../../../../tokens/operator/comma/JSOperatorCommaToken";
+import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
+import PUNCTSignAsteriskToken from "../../../../../punct/tokens/sign/PUNCTSignAsteriskToken";
 import JSModuleAsKeywordToken from "../../../../tokens/module/as/keyword/JSModuleAsKeywordToken";
-import JSModuleAllKeywordToken from "../../../../tokens/module/all/keyword/JSModuleAllKeywordToken";
+import PUNCTSeparatorCommaToken from "../../../../../punct/tokens/separator/PUNCTSeparatorCommaToken";
 
 export default class JSModuleImportIdentifierPattern extends AbstractParserPattern
 {
     identifier = undefined as JSVariableNameToken | undefined;
-    all = undefined as JSModuleAllKeywordToken | undefined;
+    all = undefined as PUNCTSignAsteriskToken | undefined;
     as = undefined as JSModuleAsKeywordToken | undefined;
     alias = undefined as JSVariableNameToken | undefined;
-    operator = undefined as JSOperatorCommaToken | undefined;
+    separator = undefined as PUNCTSeparatorCommaToken | undefined;
+
 
     properties = () => [
         'identifier',
         'all',
         'as',
         'alias',
-        'operator',
+        'separator',
     ];
 
     pattern = () => [
@@ -29,7 +30,7 @@ export default class JSModuleImportIdentifierPattern extends AbstractParserPatte
             name: 'all',
             required: () => this.identifier === undefined,
             disabled: () => this.identifier != undefined,
-            element: JSModuleAllKeywordToken,
+            element: PUNCTSignAsteriskToken,
         }, {
             skip: /[\s]/,
             required: false,
@@ -49,9 +50,9 @@ export default class JSModuleImportIdentifierPattern extends AbstractParserPatte
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'operator',
+            name: 'separator',
             required: false,
-            element: JSOperatorCommaToken,
+            element: PUNCTSeparatorCommaToken,
         },
     ];
 };

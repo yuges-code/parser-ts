@@ -1,21 +1,24 @@
 import JSDataObjectPropertyKeyPattern from "./key/JSDataObjectPropertyKeyPattern";
 import JSDataObjectPropertyValuePattern from "./value/JSDataObjectPropertyValuePattern";
-import JSOperatorCommaToken from "../../../../tokens/operator/comma/JSOperatorCommaToken";
 import AbstractParserPattern from "../../../../../../core/abstracts/AbstractParserPattern";
 import PUNCTSeparatorColonToken from "../../../../../punct/tokens/separator/PUNCTSeparatorColonToken";
+import PUNCTSeparatorCommaToken from "../../../../../punct/tokens/separator/PUNCTSeparatorCommaToken";
 
 export default class JSDataObjectPropertyPattern extends AbstractParserPattern
 {
     key = undefined as JSDataObjectPropertyKeyPattern | undefined;
-    separator = undefined as PUNCTSeparatorColonToken | undefined;
     value = undefined as JSDataObjectPropertyValuePattern | undefined;
-    operator = undefined as JSOperatorCommaToken | undefined;
+    separator = {
+        colon: undefined as PUNCTSeparatorColonToken | undefined,
+        comma: undefined as PUNCTSeparatorCommaToken | undefined,
+    };
 
     properties = () => [
         'key',
-        'separator',
         'value',
-        'operator',
+        {
+            'separator': ['colon', 'comma'],
+        },
     ];
 
     pattern = () => [
@@ -27,7 +30,7 @@ export default class JSDataObjectPropertyPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'separator',
+            name: 'separator.colon',
             required: true,
             element: PUNCTSeparatorColonToken,
         }, {
@@ -41,9 +44,9 @@ export default class JSDataObjectPropertyPattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'operator',
+            name: 'separator.comma',
             required: false,
-            element: JSOperatorCommaToken,
+            element: PUNCTSeparatorCommaToken,
         },
     ];
 };

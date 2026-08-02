@@ -1,18 +1,21 @@
+import JSDataStringPattern from "../../data/string/JSDataStringPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSExpressionBinaryPattern from "../../expression/binary/JSExpressionBinaryPattern";
+import PUNCTSignAsteriskToken from "../../../../punct/tokens/sign/PUNCTSignAsteriskToken";
+import JSModuleFromKeywordToken from "../../../tokens/module/from/keyword/JSModuleFromKeywordToken";
 import JSExpressionDeclarationPattern from "../../expression/declaration/JSExpressionDeclarationPattern";
 import JSModuleExportKeywordToken from "../../../tokens/module/export/keyword/JSModuleExportKeywordToken";
 import JSModuleExportDefaultKeywordToken from "../../../tokens/module/export/default/JSModuleExportDefaultKeywordToken";
-import JSModuleFromKeywordToken from "../../../tokens/module/from/keyword/JSModuleFromKeywordToken";
-import JSDataStringPattern from "../../data/string/JSDataStringPattern";
-import JSModuleAllKeywordToken from "../../../tokens/module/all/keyword/JSModuleAllKeywordToken";
 
 export default class JSModuleExportPattern extends AbstractParserPattern
 {
     keyword = undefined as JSModuleExportKeywordToken | undefined;
     default = undefined as JSModuleExportDefaultKeywordToken | undefined;
-    all = undefined as JSModuleAllKeywordToken | undefined;
-    expression = undefined as JSExpressionDeclarationPattern | JSExpressionBinaryPattern | undefined;
+    all = undefined as PUNCTSignAsteriskToken | undefined;
+    expression = undefined as
+        undefined |
+        JSExpressionBinaryPattern |
+        JSExpressionDeclarationPattern;
     from = undefined as JSModuleFromKeywordToken | undefined;
     source = undefined as JSDataStringPattern | undefined;
 
@@ -44,7 +47,7 @@ export default class JSModuleExportPattern extends AbstractParserPattern
             name: 'all',
             required: false,
             disabled: () => this.default != undefined,
-            element: JSModuleAllKeywordToken,
+            element: PUNCTSignAsteriskToken,
         }, {
             name: 'expression',
             required: false,
