@@ -1,9 +1,10 @@
 
 import HTMLNodeCollection from "../../collections/HTMLNodeCollection";
-import JSNodeCollection from "../../../js/collections/JSNodeCollection";
 import HTMLElementOpeningTagPattern from "./tag/HTMLElementOpeningTagPattern";
 import HTMLElementClosingTagPattern from "./tag/HTMLElementClosingTagPattern";
 import AbstractParserPattern from "../../../../core/abstracts/AbstractParserPattern";
+import JSInstructionCollection from "../../../js/collections/JSInstructionCollection";
+import TSInstructionCollection from "../../../ts/collections/TSInstructionCollection";
 
 export default class HTMLElementPattern extends AbstractParserPattern
 {
@@ -33,7 +34,15 @@ export default class HTMLElementPattern extends AbstractParserPattern
             element: () => {
                 const name = this.openingTag?.name?.lexeme?.toLowerCase();
 
-                return name === 'script' ? JSNodeCollection : HTMLNodeCollection;
+                if (name === 'script') {
+                    const attribute = this.openingTag?.getAttribute('lang');
+
+                    return this.langs()?.[
+                        (attribute?.value?.lexeme || 'js') as keyof ReturnType<typeof this.langs>
+                    ] || JSInstructionCollection;
+                }
+
+                return HTMLNodeCollection;
             },
         }, {
             name: 'closingTag',
@@ -66,4 +75,9 @@ export default class HTMLElementPattern extends AbstractParserPattern
         'menuitem',
         '!doctype',
     ];
+
+    langs = () => ({
+        js: JSInstructionCollection,
+        ts: TSInstructionCollection,
+    });
 };

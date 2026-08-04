@@ -1,10 +1,11 @@
 import ParserRoot from "./core/root/ParserRoot";
-import JSNodeCollection from "./modules/js/collections/JSNodeCollection";
 import HTMLNodeCollection from "./modules/html/collections/HTMLNodeCollection";
+import JSInstructionCollection from "./modules/js/collections/JSInstructionCollection";
+import TSInstructionCollection from "./modules/ts/collections/TSInstructionCollection";
 
 const strategies = {
-    js: JSNodeCollection,
-    // ts: '',
+    js: JSInstructionCollection,
+    ts: TSInstructionCollection,
     // jsx: '',
     // tsx: '',
     // vue: '',

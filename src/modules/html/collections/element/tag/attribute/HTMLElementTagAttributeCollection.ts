@@ -3,5 +3,7 @@ import HTMLElementTagAttributePattern from "../../../../patterns/element/tag/att
 
 export default class HTMLElementTagAttributeCollection extends AbstractParserPatternCollection
 {
+    items = [] as HTMLElementTagAttributePattern[];
+
     pattern = () => HTMLElementTagAttributePattern;
 };

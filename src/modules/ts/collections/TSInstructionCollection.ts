@@ -1,7 +1,7 @@
-import JSNodePattern from "../patterns/JSNodePattern";
+import JSNodePattern from "../../js/patterns/JSNodePattern";
 import AbstractParserPatternCollection from "../../../core/abstracts/AbstractParserPatternCollection";
 
-export default class JSNodeCollection extends AbstractParserPatternCollection
+export default class TSInstructionCollection extends AbstractParserPatternCollection
 {
     skip = () => /[\s;]/;
 

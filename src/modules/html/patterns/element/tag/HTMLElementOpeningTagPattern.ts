@@ -50,4 +50,7 @@ export default class HTMLElementOpeningTagPattern extends AbstractParserPattern
             element: HTMLElementClosingTagQuoteToken,
         },
     ];
+
+    getAttribute = (name: string) =>
+        this.attributes?.items.find((attribute) => attribute.name?.lexeme === name);
 };

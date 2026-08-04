@@ -1,4 +1,4 @@
-import JSNodeCollection from "../../../collections/JSNodeCollection";
+import JSInstructionCollection from "../../../collections/JSInstructionCollection";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import PUNCTBracketCurlyOpenToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyOpenToken";
 import PUNCTBracketCurlyCloseToken from "../../../../punct/tokens/bracket/curly/PUNCTBracketCurlyCloseToken";
@@ -9,7 +9,7 @@ export default class JSConditionBodyPattern extends AbstractParserPattern
         open: undefined as PUNCTBracketCurlyOpenToken | undefined,
         close: undefined as PUNCTBracketCurlyCloseToken | undefined,
     };
-    instructions = undefined as JSNodeCollection | undefined;
+    instructions = undefined as JSInstructionCollection | undefined;
 
     properties = () => [
         'instructions',
@@ -29,7 +29,7 @@ export default class JSConditionBodyPattern extends AbstractParserPattern
         }, {
             name: 'instructions',
             required: false,
-            element: JSNodeCollection,
+            element: JSInstructionCollection,
         }, {
             skip: /[\s]/,
             required: false,
