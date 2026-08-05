@@ -1,4 +1,4 @@
-import JSNodePattern from "../../JSNodePattern";
+import JSInstructionPattern from "../../JSInstructionPattern";
 import JSConditionIfPattern from "../if/JSConditionIfPattern";
 import JSConditionBodyPattern from "../body/JSConditionBodyPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
@@ -8,7 +8,7 @@ export default class JSConditionElsePattern extends AbstractParserPattern
 {
     keyword = undefined as JSConditionElseKeywordToken | undefined;
     if = undefined as JSConditionIfPattern | undefined;
-    body = undefined as JSConditionBodyPattern | JSNodePattern | undefined;
+    body = undefined as JSConditionBodyPattern | JSInstructionPattern | undefined;
     else = undefined as JSConditionElsePattern | undefined;
 
     properties = () => [
@@ -43,7 +43,7 @@ export default class JSConditionElsePattern extends AbstractParserPattern
             name: 'body',
             required: () => this.body === undefined && this.if === undefined,
             disabled: () => this.body != undefined || this.if != undefined,
-            element: JSNodePattern,
+            element: JSInstructionPattern,
         }, {
             skip: /[\s]/,
             required: false,

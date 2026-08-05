@@ -1,5 +1,5 @@
-import JSNodePattern from "../../JSNodePattern";
 import JSLoopBodyPattern from "../body/JSLoopBodyPattern";
+import JSInstructionPattern from "../../JSInstructionPattern";
 import JSLoopWhileConditionPattern from "./condition/JSLoopWhileConditionPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
 import JSLoopWhileKeywordToken from "../../../tokens/loop/while/keyword/JSLoopWhileKeywordToken";
@@ -39,7 +39,7 @@ export default class JSLoopWhilePattern extends AbstractParserPattern
             name: 'body',
             required: () => this.body === undefined,
             disabled: () => this.body != undefined,
-            element: JSNodePattern,
+            element: JSInstructionPattern,
         },
     ];
 };

@@ -10,7 +10,7 @@ import JSExpressionReturnPattern from "./expression/return/JSExpressionReturnPat
 import JSExpressionBinaryPattern from "./expression/binary/JSExpressionBinaryPattern";
 import JSExpressionDeclarationPattern from "./expression/declaration/JSExpressionDeclarationPattern";
 
-export default class JSNodePattern extends AbstractParserPattern
+export default class JSInstructionPattern extends AbstractParserPattern
 {
     morphs = () => [
         JSModuleImportPattern,
