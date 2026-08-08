@@ -39,7 +39,8 @@ export default function Patternable<T extends Constructor>(base: T)
         static parsePattern(
             content: string,
             position: number,
-            parent: ParserRoot | AbstractParserPattern
+            parent: ParserRoot | AbstractParserPattern,
+            events = { parsed: (token: AbstractParserToken) => {} },
         )
         {
             const instance = new this()
@@ -76,7 +77,8 @@ export default function Patternable<T extends Constructor>(base: T)
                     item.element,
                     content,
                     position,
-                    instance as any as AbstractParserPattern
+                    instance as any as AbstractParserPattern,
+                    events,
                 );
 
                 if (! element && (
@@ -123,6 +125,7 @@ export default function Patternable<T extends Constructor>(base: T)
             content: string,
             position: number,
             instance: AbstractParserPattern,
+            events = { parsed: (token: AbstractParserToken) => {} },
         )
         {
             const data = {
@@ -145,7 +148,8 @@ export default function Patternable<T extends Constructor>(base: T)
                 const result = element.parse(
                     content,
                     position,
-                    instance as any as AbstractParserPattern
+                    instance as any as AbstractParserPattern,
+                    events,
                 );
 
                 data.element =

@@ -4,6 +4,7 @@ import Arrayable from "../traits/Arrayable";
 import Parentable from "../traits/Parentable";
 import Positionable from "../traits/Positionable";
 import AbstractParserPattern from "./AbstractParserPattern";
+import AbstractParserToken from "./AbstractParserToken";
 
 export default class AbstractParserPatternCollection extends Arrayable(Positionable(Parentable(class {})))
 {
@@ -28,7 +29,12 @@ export default class AbstractParserPatternCollection extends Arrayable(Positiona
         return new this().pattern();
     };
 
-    static parse(content: string, position: number, parent: ParserRoot | AbstractParserPattern)
+    static parse(
+        content: string,
+        position: number,
+        parent: ParserRoot | AbstractParserPattern,
+        events = { parsed: (token: AbstractParserToken) => {} },
+    )
     {
         const instance = new this()
             .setParent(parent)
@@ -38,7 +44,7 @@ export default class AbstractParserPatternCollection extends Arrayable(Positiona
 
         if (pattern) {
             position = read(content, position, (content, position) => {
-                const result = { position } = pattern.parse(content, position, parent);
+                const result = { position } = pattern.parse(content, position, parent, events);
 
                 if (! result.pattern) {
                     return false;

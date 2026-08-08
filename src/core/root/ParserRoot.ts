@@ -1,5 +1,6 @@
 import read from "../utils/read";
 import Positionable from "../traits/Positionable";
+import AbstractParserToken from "../abstracts/AbstractParserToken";
 import AbstractParserPatternCollection from "../abstracts/AbstractParserPatternCollection";
 
 export default class ParserRoot extends Positionable(class {})
@@ -13,13 +14,18 @@ export default class ParserRoot extends Positionable(class {})
         return this;
     };
 
-    static parse(content: string, collection: typeof AbstractParserPatternCollection, position: number)
+    static parse(
+        content: string,
+        collection: typeof AbstractParserPatternCollection,
+        position: number,
+        events = { parsed: (token: AbstractParserToken) => {} },
+    )
     {
         position = read(content, position);
 
         const instance = new this().setPosition(position);
 
-        const result = { position } = collection.parse(content, position, instance);
+        const result = { position } = collection.parse(content, position, instance, events);
 
         instance
             .setChildren(result.collection)

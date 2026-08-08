@@ -1,5 +1,6 @@
 import ParserRoot from "../root/ParserRoot";
 import AbstractParserPattern from "../abstracts/AbstractParserPattern";
+import AbstractParserToken from "../abstracts/AbstractParserToken";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -17,7 +18,12 @@ export default function Morphable<T extends Constructor>(base: T)
             return new this().morphs();
         };
 
-        static parseMorph(content: string, position: number, parent: ParserRoot | AbstractParserPattern)
+        static parseMorph(
+            content: string,
+            position: number,
+            parent: ParserRoot | AbstractParserPattern,
+            events = { parsed: (token: AbstractParserToken) => {} },
+        )
         {
             const morphs = this.morphs();
 
@@ -29,7 +35,7 @@ export default function Morphable<T extends Constructor>(base: T)
                         var {
                             pattern,
                             position,
-                        } = morphs[index].parse(content, position, parent);
+                        } = morphs[index].parse(content, position, parent, events);
                     } else {
                         continue;
                     }

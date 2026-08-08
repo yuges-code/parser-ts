@@ -1,4 +1,5 @@
 import ParserRoot from "./core/root/ParserRoot";
+import AbstractParserToken from "./core/abstracts/AbstractParserToken";
 import HTMLNodeCollection from "./modules/html/collections/HTMLNodeCollection";
 import JSInstructionCollection from "./modules/js/collections/JSInstructionCollection";
 import TSInstructionCollection from "./modules/ts/collections/TSInstructionCollection";
@@ -16,6 +17,7 @@ function parse(
     content: string,
     type: keyof typeof strategies,
     position = 0 as number,
+    events = { parsed: (token: AbstractParserToken) => {} },
 )
 {
     const strategy = strategies[type];
@@ -23,7 +25,7 @@ function parse(
     var {
         root,
         position,
-    } = ParserRoot.parse(content, strategy, position);
+    } = ParserRoot.parse(content, strategy, position, events);
 
     return {
         root: root,

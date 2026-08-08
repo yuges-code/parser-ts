@@ -1,47 +1,31 @@
-import JSExpressionCallingPattern from "../calling/JSExpressionCallingPattern";
+import JSExpressionAccessDotPattern from "./dot/JSExpressionAccessDotPattern";
+import JSExpressionAccessCallPattern from "./call/JSExpressionAccessCallPattern";
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSVariableNameToken from "../../../tokens/variable/name/JSVariableNameToken";
-import JSOperatorAccessToken from "../../../tokens/operator/access/JSOperatorAccessToken";
-import JSOperatorAccessOptionalToken from "../../../tokens/operator/access/JSOperatorAccessOptionalToken";
+import JSExpressionAccessBracketPattern from "./bracket/JSExpressionAccessBracketPattern";
 
 export default class JSExpressionAccessPattern extends AbstractParserPattern
 {
-    operator = undefined as JSOperatorAccessToken | undefined;
-    identifier = undefined as JSVariableNameToken | undefined;
-    calling = undefined as JSExpressionCallingPattern | undefined;
+    expression = undefined as
+        undefined |
+        JSExpressionAccessDotPattern |
+        JSExpressionAccessCallPattern |
+        JSExpressionAccessBracketPattern;
     access = undefined as JSExpressionAccessPattern | undefined;
 
     properties = () => [
-        'operator',
-        'identifier',
-        'calling',
+        'expression',
         'access',
     ];
 
     pattern = () => [
         {
-            name: 'operator',
-            required: false,
-            element: JSOperatorAccessToken,
-        }, {
-            name: 'operator',
-            required: () => this.operator === undefined,
-            disabled: () => this.operator != undefined,
-            element: JSOperatorAccessOptionalToken,
-        }, {
-            skip: /[\s]/,
-            required: false,
-        }, {
-            name: 'identifier',
-            required: false,
-            element: JSVariableNameToken,
-        }, {
-            skip: /[\s]/,
-            required: false,
-        }, {
-            name: 'calling',
-            required: () => this.identifier === undefined,
-            element: JSExpressionCallingPattern,
+            name: 'expression',
+            required: true,
+            element: [
+                JSExpressionAccessDotPattern,
+                JSExpressionAccessCallPattern,
+                JSExpressionAccessBracketPattern,
+            ],
         }, {
             skip: /[\s]/,
             required: false,

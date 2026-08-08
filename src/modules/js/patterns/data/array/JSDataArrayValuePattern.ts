@@ -1,15 +1,15 @@
 import AbstractParserPattern from "../../../../../core/abstracts/AbstractParserPattern";
-import JSOperatorCommaToken from "../../../tokens/operator/comma/JSOperatorCommaToken";
 import JSExpressionBinaryPattern from "../../expression/binary/JSExpressionBinaryPattern";
+import PUNCTSeparatorCommaToken from "../../../../punct/tokens/separator/PUNCTSeparatorCommaToken";
 
 export default class JSDataArrayValuePattern extends AbstractParserPattern
 {
     expression = undefined as JSExpressionBinaryPattern | undefined;
-    operator = undefined as JSOperatorCommaToken | undefined;
+    separator = undefined as PUNCTSeparatorCommaToken | undefined;
 
     properties = () => [
         'expression',
-        'operator',
+        'separator',
     ];
 
     pattern = () => [
@@ -21,9 +21,9 @@ export default class JSDataArrayValuePattern extends AbstractParserPattern
             skip: /[\s]/,
             required: false,
         }, {
-            name: 'operator',
+            name: 'separator',
             required: false,
-            element: JSOperatorCommaToken,
+            element: PUNCTSeparatorCommaToken,
         },
     ];
 };

@@ -90,7 +90,12 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
         return new this().required();
     }
 
-    static parse(content: string, position: number, parent: AbstractParserPattern)
+    static parse(
+        content: string,
+        position: number,
+        parent: AbstractParserPattern,
+        events = { parsed: (token: AbstractParserToken) => {} },
+    )
     {
         const instance = new this()
             .setParent(parent)
@@ -154,6 +159,8 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
                 };
             }
         }
+
+        events.parsed(instance);
 
         return {
             token: instance,
