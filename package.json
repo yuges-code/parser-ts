@@ -2,7 +2,7 @@
   "name": "@yuges/parser-ts",
   "description": "A TS Library for parser code",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "license": "MIT",
   "author": {
