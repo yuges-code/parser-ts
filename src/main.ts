@@ -1,16 +1,17 @@
 import ParserRoot from "./core/root/ParserRoot";
 import AbstractParserToken from "./core/abstracts/AbstractParserToken";
+import VUENodeCollection from "./modules/vue/collections/VUENodeCollection";
 import HTMLNodeCollection from "./modules/html/collections/HTMLNodeCollection";
 import JSInstructionCollection from "./modules/js/collections/JSInstructionCollection";
 import TSInstructionCollection from "./modules/ts/collections/TSInstructionCollection";
 
 const strategies = {
+    vue: VUENodeCollection,
+    html: HTMLNodeCollection,
     js: JSInstructionCollection,
     ts: TSInstructionCollection,
     // jsx: '',
     // tsx: '',
-    // vue: '',
-    html: HTMLNodeCollection,
 };
 
 function parse(
